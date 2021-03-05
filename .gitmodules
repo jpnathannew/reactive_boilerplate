@@ -1,0 +1,3 @@
+[submodule "src/core-module"]
+	path = src/core-module
+	url = https://github.com/jpnathannew/core-files.git
