@@ -1,7 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
+import { useTranslation } from "react-i18next";
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
+  const { t, i18n } = useTranslation();
+
   return (
     <div className="App">
       <header className="App-header">

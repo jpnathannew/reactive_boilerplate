@@ -1,34 +1,25 @@
-import React from 'react';
-import { render} from 'react-dom';
-import './index.css';
+import React from "react";
+import { render } from "react-dom";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware, compose } from "redux";
-import RootReducer from "./core-files/reducers"
-import thunk from "redux-thunk";
-import reportWebVitals from './reportWebVitals';
-import App from './App';
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
+import reportWebVitals from "./reportWebVitals";
+import { I18nextProvider } from "react-i18next";
 
-const composeEnhancers =
-  typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-        // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
-      })
-    : compose;
+import store from "./store";
+import App from "./App";
+import i18n from "./i18n";
 
-const enhancer = composeEnhancers(
-  applyMiddleware(thunk)
-  // other store enhancers if any
-);
+import "./index.css";
 
-const store = createStore(RootReducer, enhancer);
 const persistor = persistStore(store);
 
 render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
-      <App />
+      <I18nextProvider i18n={i18n}>
+        <App />
+      </I18nextProvider>
     </PersistGate>
   </Provider>,
   document.getElementById("root")
